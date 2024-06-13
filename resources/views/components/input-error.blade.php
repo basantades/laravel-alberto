@@ -5,11 +5,7 @@
 @enderror --}}
 
 
-
-
-
 {{-- codigo Breeze anterior a jetstream --}}
-
 
 @props(['messages'])
 
