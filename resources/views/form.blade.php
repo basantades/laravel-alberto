@@ -13,7 +13,7 @@
                         @csrf
                         <textarea name="message" id="message" placeholder="{{__('Enter your message')}}" class="w-full">{{ old('message') }}</textarea>
                         <x-input-error :messages="$errors->get('message')" class="mt-2" />
-                        <x-primary-button class="mt-4">{{__('Submit')}}</x-primary-button>
+                        <x-primary-button class=" mt-4  ">{{__('Submit message')}}</x-primary-button>
                         @if (@session('status'))
                         <div class="bg-green-500 text-white text-center p-2 mt-3 rounded-md">{{ session('status') }}</div>
                         @endif
