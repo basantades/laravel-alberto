@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+
+
+
+
+/* CSS personalizado*/
+
+@keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  .aparicionFadeUp {
+    view-timeline-name: --titular;
+    view-timeline-axis: block;
+  
+    animation-timeline: --titular;
+    animation-name: fadeUp;
+  
+    animation-range: entry 10% cover 40%;
+    animation-fill-mode: both;
+  }
+  @keyframes aparicion {
+    0% {
+      opacity: 0;
+      transform: scale(0.2);
+    }
+    80% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .elementos-aparicion {
+    view-timeline-name: --image;
+    view-timeline-axis: block;
+  
+    animation-timeline: --image;
+    animation-name: aparicion;
+  
+    animation-range: entry 100% cover 25%;
+    animation-fill-mode: both;
+  }
+  .img-aparicion {
+    view-timeline-name: --image;
+    view-timeline-axis: block;
+  
+    animation-timeline: --image;
+    animation-name: aparicion;
+  
+    animation-range: entry 25% cover 40%;
+    animation-fill-mode: both;
+  }
