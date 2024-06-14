@@ -35,14 +35,14 @@
                             @if (! $message->liked)
                                 <a href="{{ route('messages.like', $message) }}" class="btn btn-primary btn-sm">({{ $message->likesCount }}) Me gusta</a>
                             @else
-                                <a href="{{ route('messages.unlike', $message) }}" class="btn btn-primary btn-sm">({{ $message->likesCount }}) Te gusta</a>
+                                <a href="{{ route('messages.unlike', $message) }}" class="btn btn-primary btn-sm text-green-600">({{ $message->likesCount }}) Te gusta</a>
                             @endif
     
-                            @if (! $message->disliked)
+                            {{-- @if (! $message->disliked)
                                 <a href="{{ route('messages.dislike', $message) }}" class="btn btn-secondary btn-sm">({{ $message->dislikesCount }}) No me gusta</a>
                             @else
-                                <a href="{{ route('messages.undislike', $message) }}" class="btn btn-secondary btn-sm">({{ $message->dislikesCount }}) Te disgusta</a>
-                            @endif
+                                <a href="{{ route('messages.undislike', $message) }}" class="btn btn-secondary btn-sm text-red-600">({{ $message->dislikesCount }}) Te disgusta</a>
+                            @endif --}}
                         </div>
                     </div>
                 </div>

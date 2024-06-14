@@ -23,5 +23,7 @@ class MessageText extends Model implements ReactableInterface
     {
         return $this->belongsTo(User::class);
     }
+
+
 }
 

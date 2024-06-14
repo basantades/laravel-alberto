@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageTextController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
@@ -99,15 +100,19 @@ class MessageTextController extends Controller
 
     public function like(MessageText $MessageText)
     {
-
-        $MessageText->likeBy();
+      
+        $user = Auth::user();
+        $reacterFacade = $user->viaLoveReacter();
+        $reacterFacade->reactTo($MessageText, 'Like');
 
         return back();
     }
     
     public function unlike(MessageText $MessageText)
     {
-        $MessageText->unlikeBy();
+        $user = Auth::user();
+        $reacterFacade = $user->viaLoveReacter();
+        $reacterFacade->unreactTo($MessageText, 'Like');
 
         return back();
     }
