@@ -12,10 +12,16 @@ class MessageTextController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index( MessageText $MessageText)
     {
+        $user = Auth::user();
+        $reacterFacade = $user->viaLoveReacter();
+        $reactionCounters = $MessageText->viaLoveReactant()->getReactionCounters();
+
         return view('form', [
             'messages'=>MessageText::with('user')->latest()->get(),
+            'reacterFacade'=>$reacterFacade,
+            'reactionCounters'=>$reactionCounters,
         ]);
     }
 
@@ -100,7 +106,11 @@ class MessageTextController extends Controller
 
     public function like(MessageText $MessageText)
     {
-      
+    //     $user = Auth::user();
+    //     $reacterFacade = $user->viaLoveReacter();
+    //     $isReacted = $reacterFacade->hasReactedTo($MessageText, 'Like');
+    //     $isNotReacted = $reacterFacade->hasNotReactedTo($MessageText, 'Like');
+    //   dd($isReacted);
         $user = Auth::user();
         $reacterFacade = $user->viaLoveReacter();
         $reacterFacade->reactTo($MessageText, 'Like');
