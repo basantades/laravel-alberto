@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MessageText;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageTextController extends Controller
 {
@@ -64,21 +65,6 @@ class MessageTextController extends Controller
        ]);
     }
 
-    public function like(MessageText $MessageText)
-    {
-        dd($MessageText);
-        $likedByArray = json_decode($MessageText->liked_by, true) ?? [];
-
-        // Verificar si el usuario ya dio like
-        if (!in_array(auth()->id(), $likedByArray)) {
-            $likedByArray[] = auth()->id();
-            $MessageText->liked_by = json_encode($likedByArray);
-            $MessageText->save();
-        }
-    
-        return back();
-    }
-
     /**
      * Update the specified resource in storage.
      */
@@ -109,5 +95,34 @@ class MessageTextController extends Controller
         $this->authorize('delete', $MessageText);
         $MessageText->delete();
         return back()->with('status', 'Message deleted successfully');
+    }
+
+    public function like(MessageText $MessageText)
+    {
+
+        $MessageText->likeBy();
+
+        return back();
+    }
+    
+    public function unlike(MessageText $MessageText)
+    {
+        $MessageText->unlikeBy();
+
+        return back();
+    }
+
+    public function dislike(MessageText $MessageText)
+    {
+        $MessageText->dislikeBy();
+
+        return back();
+    }
+
+    public function undislike(MessageText $MessageText)
+    {
+        $MessageText->undislikeBy();
+
+        return back();
     }
 }

@@ -31,6 +31,19 @@
                         <small class="text-gray-400">{{ $message->created_at->format('j M Y, H:i:s') }}</small>
                         <small class="text-gray-400">{{  $message->created_at != $message->updated_at ? '- Edited at ' . $message->updated_at->format('j M Y, H:i:s') : '' }}</small>
                         <p class="mt-2">{{ $message->message }}</p>
+                        <div class="card-footer">
+                            @if (! $message->liked)
+                                <a href="{{ route('messages.like', $message) }}" class="btn btn-primary btn-sm">({{ $message->likesCount }}) Me gusta</a>
+                            @else
+                                <a href="{{ route('messages.unlike', $message) }}" class="btn btn-primary btn-sm">({{ $message->likesCount }}) Te gusta</a>
+                            @endif
+    
+                            @if (! $message->disliked)
+                                <a href="{{ route('messages.dislike', $message) }}" class="btn btn-secondary btn-sm">({{ $message->dislikesCount }}) No me gusta</a>
+                            @else
+                                <a href="{{ route('messages.undislike', $message) }}" class="btn btn-secondary btn-sm">({{ $message->dislikesCount }}) Te disgusta</a>
+                            @endif
+                        </div>
                     </div>
                 </div>
                     {{-- @if (auth()->user()->id == $message->user_id) --}}

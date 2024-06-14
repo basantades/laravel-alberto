@@ -51,11 +51,7 @@ Route::view('profile', 'profile')
 Route::view('livewire', 'livewire')
     ->name('livewire');
 
-Route::get('/form', [MessageTextController::class, 'index'])->name('form');
-Route::post('/form', [MessageTextController::class, 'store'])->name('form.store');
-Route::get('/messages/{MessageText}/edit', [MessageTextController::class, 'edit'])->name('messages.edit');
-Route::put('/messages/{MessageText}', [MessageTextController::class, 'update'])->name('messages.update');
-Route::delete('/messages/{MessageText}', [MessageTextController::class, 'destroy'])->name('messages.delete');
+
 
 
 Route::get('/createpost', CreatePost::class);
@@ -83,4 +79,22 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+
+
+
+Route::get('/form', [MessageTextController::class, 'index'])->name('form');
+Route::post('/form', [MessageTextController::class, 'store'])->name('form.store');
+Route::get('/messages/{MessageText}/edit', [MessageTextController::class, 'edit'])->name('messages.edit');
+Route::put('/messages/{MessageText}', [MessageTextController::class, 'update'])->name('messages.update');
+Route::delete('/messages/{MessageText}', [MessageTextController::class, 'destroy'])->name('messages.delete');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('messages', 'MessageTextController');
+
+    Route::get('messages/{MessageText}/like', [MessageTextController::class, 'like'])->name('messages.like');
+    Route::get('messages/{MessageText}/unlike', [MessageTextController::class, 'unlike'])->name('messages.unlike');
+
+    Route::get('messages/{MessageText}/dislike', [MessageTextController::class, 'dislike'])->name('messages.dislike');
+    Route::get('messages/{MessageText}/undislike', [MessageTextController::class, 'undislike'])->name('messages.undislike');
 });
