@@ -129,14 +129,18 @@ class MessageTextController extends Controller
 
     public function dislike(MessageText $MessageText)
     {
-        $MessageText->dislikeBy();
+        $user = Auth::user();
+        $reacterFacade = $user->viaLoveReacter();
+        $reacterFacade->reactTo($MessageText, 'dislike');
 
         return back();
     }
 
     public function undislike(MessageText $MessageText)
     {
-        $MessageText->undislikeBy();
+        $user = Auth::user();
+        $reacterFacade = $user->viaLoveReacter();
+        $reacterFacade->unreactTo($MessageText, 'dislike');
 
         return back();
     }
