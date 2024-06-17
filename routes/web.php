@@ -65,6 +65,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('users', [AdminUsersController::class, 'index'])->name('users.index');
     Route::put('/users/{User}', [AdminUsersController::class, 'update'])->name('users.update');
     Route::delete('/users/{User}', [AdminUsersController::class, 'destroy'])->name('users.delete');
+    Route::get('/users/download', [AdminUsersController::class, 'download'])->name('users.download');
 });
 
 

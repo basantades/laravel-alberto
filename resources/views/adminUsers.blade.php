@@ -48,7 +48,10 @@
                     </div>
                     @endforeach
                 </div>
-                </div>
+                <form method="GET" action="{{ route('users.download', $user) }}" class="mb-8 w-full flex flex-col items-center">
+                    @csrf 
+                <x-primary-button :href="route('users.download')" onclick="event.preventDefault(); this.closest('form').submit();" class="btn btn-primary col-span-1">Download xlsx</x-primary-button>
+                </form>                </div>
             </div>
         </div>
     </div>

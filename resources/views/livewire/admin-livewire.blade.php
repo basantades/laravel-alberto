@@ -25,5 +25,8 @@
             <x-primary-button wire:click="destroy({{ $user->id }})" class="btn btn-primary col-span-1 w-fit">Delete</x-primary-button>
         </div>
         @endforeach
+        <div class="mt-8 w-full flex flex-col items-center">
+        <x-primary-button wire:click="download({{ $user->id }})" class="btn btn-primary col-span-1 w-fit">Download XLSX</x-primary-button>
+    </div>
     </div>
 
