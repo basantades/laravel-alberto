@@ -36,7 +36,7 @@
         </form>    
     
     <div class="col-span-2">
-        <a href="{{ route('privatemessages.show', ['receiver' => $user->id]) }}" class="border bg-blue-500 text-white px-4 py-1 h-fit rounded-lg">
+        <a href="{{ route('privatemessages.show', ['receiver' => $user->id]) }}" class="border bg-blue-500 text-white px-4 py-2 h-fit rounded-lg">
             Mensaje Privado
         </a>   
     </div>

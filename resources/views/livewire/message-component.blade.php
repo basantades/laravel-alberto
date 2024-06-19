@@ -10,8 +10,8 @@
         @endforeach
     </div>
 
-    <form wire:submit.prevent="sendMessage()" class="flex flex-col gap-3">
-        <textarea wire:model="body" placeholder="Escribe tu mensaje..."></textarea>
-        <x-primary-button type="submit">Enviar</x-primary-button>
+    <form wire:submit.prevent="sendMessage()" class="flex flex-col gap-3 items-end">
+        <textarea class="w-full" wire:model="body" placeholder="Escribe tu mensaje..."></textarea>
+        <x-primary-button type="submit" class="w-fit">Enviar</x-primary-button>
     </form>
 </div>
