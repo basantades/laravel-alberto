@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\PrivateMessage;
@@ -12,15 +12,11 @@ class MessageComponent extends Component
     public $body = '';
     public $privateMessages = []; // Cambiado el nombre de la propiedad
 
-    protected $rules = [
+    public $rules = [
         'body' => 'required|string',
     ];
 
-    public function mount($receiverId)
-    {
-        $this->receiverId = $receiverId;
-        $this->loadPrivateMessages(); // Actualizar para llamar a la nueva función
-    }
+    
 
     public function loadPrivateMessages()
     {
@@ -50,6 +46,11 @@ class MessageComponent extends Component
         $this->loadPrivateMessages(); // Recargar los mensajes después de enviar uno nuevo
     }
 
+    public function mount($receiverId)
+    {
+        $this->receiverId = $receiverId;
+        $this->loadPrivateMessages(); // Actualizar para llamar a la nueva función
+    }
     public function render()
     {
         return view('livewire.message-component', [

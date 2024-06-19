@@ -108,4 +108,7 @@ Route::get('/privatemessages/{receiver}', function ($receiverId) {
 
 Route::get('/createpost', CreatePost::class);
 Route::get('/counter', CounterAlberto::class);
-// Route::get('/privado', MessageComponent::class);
+Route::get('/privado', MessageComponent::class);
+
+Route::view('conversations', 'conversations')
+    ->name('conversations');
