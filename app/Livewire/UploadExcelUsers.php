@@ -4,22 +4,20 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Rap2hpoutre\FastExcel\FastExcel;
-use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
 
-class UploadExcel extends Component
+class UploadExcelUsers extends Component
 {
     use WithFileUploads;
 
     public $file;
-
     public function render()
     {
-        return view('livewire.upload-excel');
+        return view('livewire.upload-excel-users');
     }
-
-    public function importNews()
+    public function importUsers()
     {
         // Validar el archivo usando la validación de Livewire
         $this->validate([
@@ -36,10 +34,12 @@ class UploadExcel extends Component
 
             // Importa el archivo usando FastExcel
             (new FastExcel)->import($filePath, function ($line) {
-                Post::create([
-                    'title' => $line['title'],
-                    'category' => $line['category'] ?? null,
-                    'content' => $line['content'],
+                User::create([
+                    'name' => $line['name'],
+                    'email' => $line['email'],
+                    'profile_photo_url' => $line['profile_photo_url'] ?? null,
+                    'password' => $line['password'],
+
                 ]);
             });
 
@@ -55,7 +55,4 @@ class UploadExcel extends Component
         // Redireccionar o retornar una respuesta (puede ser un evento Livewire)
         return redirect()->back();
     }
-
-
-
 }

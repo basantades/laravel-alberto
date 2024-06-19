@@ -1,4 +1,4 @@
-<div class="mt-8">
+<div class="mt-8 overflow-auto">
     
     <div class="mb-4 border-b pb-4 grid grid-cols-12 gap-2">
         <h3 class="text-lg font-bold">id</h3>
@@ -27,6 +27,9 @@
         @endforeach
         <div class="mt-8 w-full flex flex-col items-center">
         <x-primary-button wire:click="download({{ $user->id }})" class="btn btn-primary col-span-1 w-fit">Download XLSX</x-primary-button>
+
+
+       
     </div>
     </div>
 

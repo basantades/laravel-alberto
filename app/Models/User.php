@@ -77,4 +77,16 @@ class User extends Authenticatable implements ReacterableInterface
     {
         return $this->hasMany(MessageText::class);
     }
+
+    public function sentPrivateMessages()
+    {
+        return $this->hasMany(PrivateMessage::class, 'sender_id');
+    }
+    
+    public function receivedPrivateMessages()
+    {
+        return $this->hasMany(PrivateMessage::class, 'receiver_id');
+    }
+    
+
 }

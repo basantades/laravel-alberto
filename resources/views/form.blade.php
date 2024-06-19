@@ -29,6 +29,9 @@
                         <img src="{{ $message->user->profile_photo_url }}" alt="profile_photo" class="w-20 h-20 rounded-full object-cover">
                         <div>
                         <span class="mr-6 text-xl">{{ $message->user->name }}</span>
+                        <a href="{{ route('privatemessages.show', ['receiver' => $message->user->id]) }}" class="btn btn-primary">
+                            Mensaje Privado
+                        </a>
                         <small class="text-gray-400">{{ $message->created_at->format('j M Y, H:i:s') }}</small>
                         <small class="text-gray-400">{{  $message->created_at != $message->updated_at ? '- Edited at ' . $message->updated_at->format('j M Y, H:i:s') : '' }}</small>
                         <p class="mt-2">{{ $message->message }}</p>

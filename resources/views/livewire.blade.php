@@ -35,7 +35,7 @@
             @can('update', auth()->user())
             <div class="mt-8 bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h3 class="text-2xl mb-4">{{ __('Upload News') }}</h3>
+                    <h3 class="text-2xl mb-4">{{ __('Importar News') }}</h3>
                     <livewire:upload-excel /> 
                 </div>
             </div>
@@ -43,6 +43,7 @@
                 <div class="p-6 text-gray-900">
                     <h3 class="text-2xl mb-4">{{ __('Users') }}</h3>
                     <livewire:admin-livewire /> 
+                    <livewire:upload-excel-users /> 
                 </div>
             </div>
             @endcan

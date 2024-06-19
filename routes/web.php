@@ -8,6 +8,9 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Livewire\CounterAlberto;
 use App\Livewire\CreatePost;
 use App\Livewire\SearchPosts;
+use App\Livewire\MessageComponent;
+use App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -54,10 +57,6 @@ Route::view('livewire', 'livewire')
 
 
 
-Route::get('/createpost', CreatePost::class);
-Route::get('/counter', CounterAlberto::class);
-
-
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/search-posts', SearchPosts::class);
 
@@ -99,3 +98,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('messages/{MessageText}/dislike', [MessageTextController::class, 'dislike'])->name('messages.dislike');
     Route::get('messages/{MessageText}/undislike', [MessageTextController::class, 'undislike'])->name('messages.undislike');
 });
+
+
+Route::get('/privatemessages/{receiver}', function ($receiverId) {
+    $receiver = User::findOrFail($receiverId);
+    return view('messages.show', compact('receiver'));
+})->name('privatemessages.show');
+
+
+Route::get('/createpost', CreatePost::class);
+Route::get('/counter', CounterAlberto::class);
+// Route::get('/privado', MessageComponent::class);
