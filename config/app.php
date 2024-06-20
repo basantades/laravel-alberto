@@ -190,6 +190,5 @@ return [
         // 'Example' => App\Facades\Example::class,
         'admin' => App\Http\Middleware\AdminMiddleware::class,
     ])->toArray(),
-    'Image' => Intervention\Image\Facades\Image::class,
 
 ];
