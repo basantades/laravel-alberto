@@ -1,12 +1,12 @@
 <!-- resources/views/livewire/conversations-component.blade.php -->
 <div>
-    <h2 class="text-2xl mb-8">Mis Conversaciones</h2>
+    <h2 class="text-2xl mb-8 text-center">Mis Conversaciones</h2>
     @if($conversations->isEmpty())
         <p>No tienes conversaciones.</p>
     @else
         <ul >
             @foreach($conversations as $conversation)
-                <li class="mb-8 w-6/12 mx-auto">
+                <li class="mb-8 w-10/12 mx-auto border-b pb-8">
                     @php
                         $otherUser = $conversation->sender_id === Auth::id() ? $conversation->receiver : $conversation->sender;
                     @endphp
@@ -25,7 +25,4 @@
             @endforeach
         </ul>
     @endif
-    <h2 class="text-xl mb-8">Nueva conversacion</h2>
-    buscar usuario
-    <livewire:user-search-component /> 
 </div>

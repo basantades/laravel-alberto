@@ -10,12 +10,21 @@ class UserSearchComponent extends Component
 {
     public $selectedUserId = null; // ID del usuario seleccionado
 
+    // Método del ciclo de vida: no se debe llamar manualmente
     public function updatedSelectedUserId()
     {
-        // Validamos que el usuario seleccionado exista en la base de datos
+        // Este método se llama automáticamente cuando cambia el valor de selectedUserId
         $user = User::find($this->selectedUserId);
         if ($user) {
-            // Redirigimos al usuario a la conversación privada con el usuario seleccionado
+            // Puedes añadir lógica aquí si es necesario, pero no redirecciones
+        }
+    }
+
+    // Método de acción: puede ser llamado desde el frontend
+    public function redirectToConversation()
+    {
+        $user = User::find($this->selectedUserId);
+        if ($user) {
             return redirect()->route('privatemessages.show', ['receiver' => $user->id]);
         }
     }
@@ -31,3 +40,4 @@ class UserSearchComponent extends Component
         ]);
     }
 }
+
