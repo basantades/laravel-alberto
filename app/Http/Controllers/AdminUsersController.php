@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Policies\UserAdminPolicy;
 use Illuminate\Auth\Access\Gate;
+use Rap2hpoutre\FastExcel\FastExcel;
+
 
 class AdminUsersController extends Controller
 {
@@ -14,6 +16,7 @@ class AdminUsersController extends Controller
      */
     public function index(User $user)
     {
+
         // $this->authorize('view', $user);
         
         if (auth()->user()->admin)
@@ -22,7 +25,7 @@ class AdminUsersController extends Controller
             ]);
 
         abort(403, 'Unauthorized action.');
-        
+
     }
 
     /**
@@ -86,4 +89,16 @@ class AdminUsersController extends Controller
         return back()->with('status', 'User deleted successfully');
 
     }
+
+    public function download(User $User)
+    {
+    if (auth()->user()->admin)
+            // // Load users
+            // $users = User::all();
+
+            // // Export all users
+            // (new FastExcel($users))->export('albertoUsers.xlsx');
+            
+            return (new FastExcel(User::all()))->download('albertoUsers.xlsx');
+        }
 }

@@ -4,16 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\MessageText;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageTextController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index( MessageText $MessageText)
     {
+        $user = Auth::user();
+        $reacterFacade = $user->viaLoveReacter();
+        $reactionCounters = $MessageText->viaLoveReactant()->getReactionCounters();
+
         return view('form', [
             'messages'=>MessageText::with('user')->latest()->get(),
+            'reacterFacade'=>$reacterFacade,
+            'reactionCounters'=>$reactionCounters,
         ]);
     }
 
@@ -64,21 +72,6 @@ class MessageTextController extends Controller
        ]);
     }
 
-    public function like(MessageText $MessageText)
-    {
-        dd($MessageText);
-        $likedByArray = json_decode($MessageText->liked_by, true) ?? [];
-
-        // Verificar si el usuario ya dio like
-        if (!in_array(auth()->id(), $likedByArray)) {
-            $likedByArray[] = auth()->id();
-            $MessageText->liked_by = json_encode($likedByArray);
-            $MessageText->save();
-        }
-    
-        return back();
-    }
-
     /**
      * Update the specified resource in storage.
      */
@@ -109,5 +102,46 @@ class MessageTextController extends Controller
         $this->authorize('delete', $MessageText);
         $MessageText->delete();
         return back()->with('status', 'Message deleted successfully');
+    }
+
+    public function like(MessageText $MessageText)
+    {
+    //     $user = Auth::user();
+    //     $reacterFacade = $user->viaLoveReacter();
+    //     $isReacted = $reacterFacade->hasReactedTo($MessageText, 'Like');
+    //     $isNotReacted = $reacterFacade->hasNotReactedTo($MessageText, 'Like');
+    //   dd($isReacted);
+        $user = Auth::user();
+        $reacterFacade = $user->viaLoveReacter();
+        $reacterFacade->reactTo($MessageText, 'Like');
+
+        return back();
+    }
+    
+    public function unlike(MessageText $MessageText)
+    {
+        $user = Auth::user();
+        $reacterFacade = $user->viaLoveReacter();
+        $reacterFacade->unreactTo($MessageText, 'Like');
+
+        return back();
+    }
+
+    public function dislike(MessageText $MessageText)
+    {
+        $user = Auth::user();
+        $reacterFacade = $user->viaLoveReacter();
+        $reacterFacade->reactTo($MessageText, 'dislike');
+
+        return back();
+    }
+
+    public function undislike(MessageText $MessageText)
+    {
+        $user = Auth::user();
+        $reacterFacade = $user->viaLoveReacter();
+        $reacterFacade->unreactTo($MessageText, 'dislike');
+
+        return back();
     }
 }

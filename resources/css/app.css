@@ -65,3 +65,40 @@
     animation-range: entry 25% cover 40%;
     animation-fill-mode: both;
   }
+
+
+  .mosaic {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+    grid-gap: 20px; /* Espacio entre elementos */
+}
+
+/* Estilo de los elementos de la cuadrícula */
+.mosaic-item {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    overflow: hidden; /* Para controlar el desbordamiento de contenido */
+    break-inside: avoid; /* Evitar que se rompa dentro de columnas */
+}
+
+/* Efecto de hover para cada ítem */
+.mosaic-item:hover {
+    transform: translateY(-5px); /* Eleva ligeramente al hacer hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 1200px) {
+    .mosaic {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas medianas */
+    }
+}
+
+@media (max-width: 768px) {
+    .mosaic {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+}

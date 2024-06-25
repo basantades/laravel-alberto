@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\User;
+use Rap2hpoutre\FastExcel\FastExcel;
+
 
 class AdminLivewire extends Component
 {
@@ -39,6 +41,12 @@ class AdminLivewire extends Component
 
         $user->save();
         $this->users = User::all(); //actualiza el listado
+    }
+
+    public function download(User $user)
+    {
+        $this->authorize('view', $user);
+        return (new FastExcel(User::all()))->download('albertoUsers.xlsx');
     }
 }
 

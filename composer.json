@@ -6,13 +6,17 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "cybercog/laravel-love": "^10.0",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^3.7",
         "laravel/framework": "^10.10",
         "laravel/jetstream": "^4.3",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
+        "league/flysystem-aws-s3-v3": "^3.0",
         "livewire/livewire": "^3.0",
-        "livewire/volt": "^1.0"
+        "livewire/volt": "^1.0",
+        "rap2hpoutre/fast-excel": "^5.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",

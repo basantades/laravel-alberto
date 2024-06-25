@@ -46,6 +46,9 @@ new class extends Component
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" wire:navigate>
                         {{ __('Users') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('conversations')" :active="request()->routeIs('conversations')" wire:navigate>
+                        {{ __('Mensajes privados') }}
+                    </x-nav-link>
                     @endcan
 
                 </div>
@@ -111,6 +114,9 @@ new class extends Component
             @can('update', auth()->user())
             <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" wire:navigate>
                 {{ __('Users') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('conversations')" :active="request()->routeIs('conversations')" wire:navigate>
+                {{ __('Mensajes privados') }}
             </x-responsive-nav-link>
             @endcan
 
